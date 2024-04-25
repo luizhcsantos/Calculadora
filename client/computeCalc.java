@@ -24,17 +24,24 @@ public class computeCalc {
             Registry registry = LocateRegistry.getRegistry(host, porta);
             Compute comp = (Compute) registry.lookup(name);
 
-            StringTokenizer tokenizer = new StringTokenizer(expressao); 
+            // Cria um StringTokenizer para dividir a expressao em tokens usando espaços como delimitadores padrão
+            StringTokenizer tokenizer = new StringTokenizer(expressao);
 
-            String[] tokens = new String[tokenizer.countTokens()];
+            // Cria um array para armazenar os tokens
+            String[] tokens = new String[tokenizer.countTokens()]; // Tamanho do array é o número de tokens
+
+            // Preenche o array com os tokens obtidos do StringTokenizer
             int index = 0;
             while (tokenizer.hasMoreTokens()) {
-                tokens[index++] = tokenizer.nextToken();
+                tokens[index++] = tokenizer.nextToken(); // Obter próximo token e armazená-lo no array
             }
-            
+
+            // Verifica se o número de tokens é diferente de 3
             if (tokens.length != 3) {
-                throw new IllegalArgumentException("Expressao invalida. Deve ser no formato: valor1 operador valor2");
+                // Lança uma exceção IllegalArgumentException se a expressao não tiver o formato esperado
+                throw new IllegalArgumentException("Expressao invalida. Deve ser no formato: 'valor1 operador valor2'");
             }
+
 
             Integer valor1 = Integer.parseInt(tokens[0]);
             String op = tokens[1]; 
